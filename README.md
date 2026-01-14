@@ -64,7 +64,6 @@ https://kimbseong0814.github.io/ByungSyung.github.io/
 <img width="395" height="705" alt="스크린샷 2026-01-14 161026" src="https://github.com/user-attachments/assets/d56e7b76-9998-4842-8ca1-9f64e2582d04" />
 
 
-**관계 설명 작성 예시:**
 ### **1.1 상단 영역 (예매 시스템)**
 
 **user (회원)**
