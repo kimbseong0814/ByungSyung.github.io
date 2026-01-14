@@ -110,12 +110,6 @@ UPDATE matches SET price = 160000 WHERE id = 1;
 DELETE FROM match_bookings WHERE id = 1;
 ```
 
-### **STEP 2: ERD 다이어그램 만들기**
-
-**추천 툴:**
-- **ERDCloud** (https://www.erdcloud.com/) - 한글 지원, 무료
-- **draw.io** (https://app.diagrams.net/) - 무료
-- **PowerPoint** - 도형으로 그리기
 
 **ERD 구조:**
 ```
