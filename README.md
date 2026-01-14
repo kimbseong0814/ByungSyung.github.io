@@ -4,7 +4,7 @@ https://kimbseong0814.github.io/ByungSyung.github.io/
 
 ---
 
-## 축구 예매 시스템 데이터베이스 설계 문서
+## 축구 예매 시스템 데이터베이스 설계 
 
 ## 프로젝트 개요
 
@@ -135,7 +135,6 @@ DELETE FROM match_bookings WHERE id = 1;
 - matches (1) : match_bookings (N) → 하나의 경기에는 여러 개의 예매가 있을 수 있다
 
 
-### **STEP 4: Github Pages 배포**
 
 **현재 파일 구조:**
 ```
