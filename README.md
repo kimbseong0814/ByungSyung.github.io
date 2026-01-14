@@ -59,7 +59,63 @@ https://kimbseong0814.github.io/ByungSyung.github.io/
 
 ---
 
-## 1. DDL (테이블 생성)
+**1. ERD 구조:**
+
+<img width="395" height="705" alt="스크린샷 2026-01-14 161026" src="https://github.com/user-attachments/assets/d56e7b76-9998-4842-8ca1-9f64e2582d04" />
+
+
+**관계 설명 작성 예시:**
+### **1.1 상단 영역 (예매 시스템)**
+
+**user (회원)**
+
+- user 테이블이 중심에 있습니다
+- PK: id (기본키)
+- 속성: name, email, password
+
+**user와 연결된 2개의 예매 테이블**
+
+1. **match_bookings (경기 예매)** - 1:N 관계
+    - FK: user_id (user 테이블 참조)
+    - FK: match_id (matches 테이블 참조)
+2. **concert_bookings (공연 예매)** - 1:N 관계
+    - FK: user_id (user 테이블 참조)
+    - FK: concert_id (concerts 테이블 참조)
+
+**예매 대상**
+
+- **matches** (축구 경기) - match_bookings와 1:N 관계
+- **concerts** (공연) - concert_bookings와 1:N 관계
+
+**의미:** 한 명의 user는 여러 경기와 여러 공연을 예매할 수 있습니다.
+
+---
+
+### 1.2 **하단 영역 (주문 시스템)**
+
+**poster**
+
+- 포스터 이미지 정보 저장
+
+**poster → show**
+
+- 한 개의 포스터는 여러 공연(show)에 사용될 수 있습니다
+
+**user → order**
+
+- 한 명의 user는 여러 개의 주문(order)을 할 수 있습니다
+
+**order → order_detail**
+
+- 한 개의 주문은 여러 개의 주문 상세를 가질 수 있습니다
+
+**show → order_detail**
+
+- 한 개의 공연(show)은 여러 주문 상세에 포함될 수 있습니다
+
+---
+
+## 2. DDL (테이블 생성)
 
 ```html
 CREATE TABLE users (
@@ -116,26 +172,6 @@ UPDATE matches SET price = 160000 WHERE id = 1;
 ```
 DELETE FROM match_bookings WHERE id = 1;
 ```
-
-
-**ERD 구조:**
-```
-┌─────────────┐         ┌──────────────────┐         ┌─────────────┐
-│   users     │         │  match_bookings  │         │   matches   │
-├─────────────┤         ├──────────────────┤         ├─────────────┤
-│ id (PK)     │◄─────── ┤ user_id (FK)     │         │ id (PK)     │
-│ name        │         │ match_id (FK)    ├────────►│ name        │
-│ email       │         │ quantity         │         │ match_date  │
-│ password    │         │ booking_date     │         │ venue       │
-└─────────────┘         └──────────────────┘         │ price       │
-                                                     └─────────────┘
-```
-
-**관계 설명 작성 예시:**
-- users (1) : match_bookings (N) → 한 명의 사용자는 여러 개의 예매를 할 수 있다
-- matches (1) : match_bookings (N) → 하나의 경기에는 여러 개의 예매가 있을 수 있다
-
-
 
 **현재 파일 구조:**
 ```
