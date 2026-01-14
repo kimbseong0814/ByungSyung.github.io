@@ -28,20 +28,27 @@ https://kimbseong0814.github.io/ByungSyung.github.io/
 - 축구 티켓 예매
 - 회원 관리
 - 주문 및 결제 내역 관리
+- 공연 예매
+- 공연 주문 및 결제는 추후에 설정하겠습니다
 
 ---
 
 ## 데이터베이스 구조
 
-**총 테이블 수**: 5개
+### 총 테이블 수: 9개
 
 | 테이블명 | 설명 |
 |--------|------|
 | users | 회원 정보 |
+| matches | 축구 경기 정보 |
+| match_bookings | 경기 예매 내역 |
 | concerts | 공연 정보 |
-| bookings | 예매 내역 |
-| product | 티켓 및 부가 상품 |
-| orderlist | 결제 내역 |
+| concert_bookings | 공연 예매 내역 |
+| poster | 포스터 이미지 정보 |
+| show | 공연 상세 정보 |
+| order | 주문 정보 |
+| order_detail | 주문 상세 내역 |
+
 
 ---
 
