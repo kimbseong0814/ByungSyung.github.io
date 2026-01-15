@@ -84,12 +84,27 @@
             #signup_btn:hover {
                 background-color: #888;
             }
+
+            .back-link {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .back-link a {
+                color: #666;
+                text-decoration: none;
+                font-size: 14px;
+            }
+
+            .back-link a:hover {
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
         <div class="login-container">
             <h1>로그인</h1>
-            <form method="POST" action="/login">
+            <form id="loginForm">
                 <div class="form-group">
                     <input type="text" name="email" class="login_inputs" placeholder="이메일" required>
                 </div>
@@ -98,9 +113,25 @@
                 </div>
                 <div class="button-group">
                     <button type="submit" id="login_btn">로그인</button>
-                    <button type="button" id="signup_btn" onclick="location.href='/signup'">회원가입</button>
+                    <button type="button" id="signup_btn" onclick="location.href='signup.html'">회원가입</button>
                 </div>
             </form>
+            <div class="back-link">
+                <a href="../index.html">← 메인으로 돌아가기</a>
+            </div>
         </div>
+
+        <script>
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.querySelector('input[name="email"]').value;
+                const password = document.querySelector('input[name="password"]').value;
+
+                // GitHub Pages에서는 실제 로그인 기능이 작동하지 않으므로
+                // 데모용 안내 메시지 표시
+                alert('GitHub Pages 데모 버전입니다.\n\n실제 로그인 기능은 서버 배포 시 작동합니다.\n(현재는 정적 페이지로만 제공됩니다)');
+            });
+        </script>
     </body>
 </html>
