@@ -80,12 +80,27 @@
             .submit-btn:hover {
                 background-color: rgb(20, 0, 180);
             }
+
+            .back-link {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .back-link a {
+                color: #666;
+                text-decoration: none;
+                font-size: 14px;
+            }
+
+            .back-link a:hover {
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
         <div class="signup-container">
             <h1>회원 가입</h1>
-            <form method="POST" action="/signup">
+            <form id="signupForm">
                 <div class="form-group">
                     <label>이름</label>
                     <input type="text" name="name" class="form-input" required>
@@ -110,6 +125,27 @@
                     <button type="submit" class="submit-btn">회원가입</button>
                 </div>
             </form>
+            <div class="back-link">
+                <a href="login.html">← 로그인으로 돌아가기</a>
+            </div>
         </div>
+
+        <script>
+            document.getElementById('signupForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const password = document.querySelector('input[name="password"]').value;
+                const passwordConfirm = document.querySelector('input[name="password_confirm"]').value;
+
+                if (password !== passwordConfirm) {
+                    alert('비밀번호가 일치하지 않습니다.');
+                    return;
+                }
+
+                // GitHub Pages에서는 실제 회원가입 기능이 작동하지 않으므로
+                // 데모용 안내 메시지 표시
+                alert('GitHub Pages 데모 버전입니다.\n\n실제 회원가입 기능은 서버 배포 시 작동합니다.\n(현재는 정적 페이지로만 제공됩니다)');
+            });
+        </script>
     </body>
 </html>
