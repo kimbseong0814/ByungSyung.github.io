@@ -57,7 +57,7 @@
                 margin-top: 30px;
             }
 
-            #login_btn, #signup_btn {
+            .btn {
                 flex: 1;
                 font-size: 18px;
                 padding: 12px;
@@ -67,21 +67,21 @@
                 transition: all 0.3s ease;
             }
 
-            #login_btn {
+            .btn-login {
                 background-color: rgb(14, 0, 139);
                 color: white;
             }
 
-            #login_btn:hover {
+            .btn-login:hover {
                 background-color: rgb(20, 0, 180);
             }
 
-            #signup_btn {
+            .btn-signup {
                 background-color: #666;
                 color: white;
             }
 
-            #signup_btn:hover {
+            .btn-signup:hover {
                 background-color: #888;
             }
 
@@ -104,7 +104,7 @@
     <body>
         <div class="login-container">
             <h1>로그인</h1>
-            <form id="loginForm">
+            <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <input type="text" name="email" class="login_inputs" placeholder="이메일" required>
                 </div>
@@ -112,8 +112,8 @@
                     <input type="password" name="password" class="login_inputs" placeholder="비밀번호" required>
                 </div>
                 <div class="button-group">
-                    <button type="submit" id="login_btn">로그인</button>
-                    <button type="button" id="signup_btn" onclick="location.href='signup.html'">회원가입</button>
+                    <button type="submit" class="btn btn-login">로그인</button>
+                    <button type="button" class="btn btn-signup" onclick="handleSignup()">회원가입</button>
                 </div>
             </form>
             <div class="back-link">
@@ -122,16 +122,19 @@
         </div>
 
         <script>
-            document.getElementById('loginForm').addEventListener('submit', function(e) {
-                e.preventDefault();
+            function handleLogin(event) {
+                event.preventDefault();
                 
                 const email = document.querySelector('input[name="email"]').value;
                 const password = document.querySelector('input[name="password"]').value;
 
-                // GitHub Pages에서는 실제 로그인 기능이 작동하지 않으므로
-                // 데모용 안내 메시지 표시
-                alert('GitHub Pages 데모 버전입니다.\n\n실제 로그인 기능은 서버 배포 시 작동합니다.\n(현재는 정적 페이지로만 제공됩니다)');
-            });
+                alert('GitHub Pages 데모 버전입니다.\n\n실제 로그인 기능은 서버 배포 시 작동합니다.');
+                return false;
+            }
+
+            function handleSignup() {
+                alert('회원가입 기능은 서버 배포 시 사용 가능합니다.\n\nGitHub Pages는 정적 페이지만 지원하므로\n로그인/회원가입 기능이 작동하지 않습니다.');
+            }
         </script>
     </body>
 </html>
