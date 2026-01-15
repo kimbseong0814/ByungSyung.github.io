@@ -76,6 +76,7 @@
                 overflow: hidden;
                 box-shadow: 0 2px 10px rgba(0,0,0,0.1);
                 transition: transform 0.3s ease;
+                cursor: pointer;
             }
 
             .concert-card:hover {
@@ -87,6 +88,7 @@
                 width: 100%;
                 height: 200px;
                 object-fit: cover;
+                pointer-events: none;
             }
 
             .concert-info {
@@ -139,6 +141,8 @@
                 cursor: pointer;
                 font-size: 14px;
                 transition: all 0.3s ease;
+                position: relative;
+                z-index: 10;
             }
 
             .btn-book {
@@ -353,10 +357,10 @@
             function renderConcerts() {
                 const container = document.getElementById('concertsList');
                 container.innerHTML = concerts.map(concert => `
-                    <div class="concert-card">
-                        <img src="${concert.image}" alt="${concert.name}" class="concert-image" onclick="location.href='./concert_detail.html?concertId=${concert.id}'" style="cursor: pointer;">
+                    <div class="concert-card" onclick="goToDetail(${concert.id})">
+                        <img src="${concert.image}" alt="${concert.name}" class="concert-image">
                         <div class="concert-info">
-                            <div class="concert-name" onclick="location.href='./concert_detail.html?concertId=${concert.id}'" style="cursor: pointer;">${concert.name}</div>
+                            <div class="concert-name">${concert.name}</div>
                             <div class="concert-details">
                                 <div class="detail-row">
                                     <span class="detail-label">공연 날짜</span>
@@ -376,12 +380,16 @@
                                 </div>
                             </div>
                             <div class="concert-buttons">
-                                <button class="btn btn-book" onclick='openBookingModal(${JSON.stringify(concert)})'>예매하기</button>
+                                <button class="btn btn-book" onclick="event.stopPropagation(); openBookingModal(${JSON.stringify(concert).replace(/"/g, '&quot;')})">예매하기</button>
                                 <button class="btn btn-price">${concert.price.toLocaleString()}원</button>
                             </div>
                         </div>
                     </div>
                 `).join('');
+            }
+
+            function goToDetail(concertId) {
+                window.location.href = './concert_detail.html?concertId=' + concertId;
             }
 
             // 모달 외부 클릭 시 닫기
