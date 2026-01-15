@@ -147,6 +147,7 @@
             align-items: center;
             justify-content: center;
             line-height: 1.8;
+            white-space: pre-line;
         }
 
         @media (max-width: 768px) {
@@ -168,41 +169,37 @@
     <div class="main-container">
         <div class="section-title">공연1 상세 페이지</div>
         
-        <form method="POST" action="/bookConcert">
-            <input type="hidden" name="concertId" id="concertId" value="">
+        <div class="detail-content">
+            <div class="detail-image" id="concertImage">
+                공연 이미지
+            </div>
             
-            <div class="detail-content">
-                <div class="detail-image" id="concertImage">
-                    공연 이미지
+            <div class="detail-info">
+                <div class="info-field">
+                    <div style="margin-bottom: 5px; color: #999; font-size: 12px;">공연명</div>
+                    <strong id="concertName">-</strong>
                 </div>
-                
-                <div class="detail-info">
-                    <div class="info-field">
-                        <div style="margin-bottom: 5px; color: #999; font-size: 12px;">공연명</div>
-                        <strong id="concertName">-</strong>
+                <div class="info-field">
+                    <div style="margin-bottom: 5px; color: #999; font-size: 12px;">날짜</div>
+                    <strong id="concertDate">-</strong>
+                </div>
+                <div class="info-field">
+                    <div style="margin-bottom: 5px; color: #999; font-size: 12px;">공연 가격</div>
+                    <strong id="concertPrice">-</strong>
+                </div>
+                <div class="booking-section">
+                    <div class="booking-field">
+                        <div>수량 (input)</div>
+                        <input type="number" id="quantity" value="1" min="1" max="10">
                     </div>
-                    <div class="info-field">
-                        <div style="margin-bottom: 5px; color: #999; font-size: 12px;">날짜</div>
-                        <strong id="concertDate">-</strong>
-                    </div>
-                    <div class="info-field">
-                        <div style="margin-bottom: 5px; color: #999; font-size: 12px;">공연 가격</div>
-                        <strong id="concertPrice">-</strong>
-                    </div>
-                    <div class="booking-section">
-                        <div class="booking-field">
-                            <div>수량 (input)</div>
-                            <input type="number" name="quantity" value="1" min="1" max="10">
-                        </div>
-                        <button type="submit" class="booking-button">예매하기</button>
-                    </div>
+                    <button class="booking-button" onclick="bookConcert()">예매하기</button>
                 </div>
             </div>
+        </div>
 
-            <div class="description-section" id="concertDescription">
-                공연 소개
-            </div>
-        </form>
+        <div class="description-section" id="concertDescription">
+            공연 소개
+        </div>
     </div>
 
     <script>
@@ -210,7 +207,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const concertId = urlParams.get('concertId');
 
-        // 샘플 데이터 (실제로는 서버에서 받아옴)
+        // 샘플 데이터
         const concerts = {
             1: { 
                 name: '클래식 오케스트라', 
@@ -218,7 +215,7 @@
                 venue: '세종문화회관', 
                 price: 80000, 
                 description: '세계적인 오케스트라와 함께하는 클래식의 향연\n감동적인 음악으로 채워지는 특별한 밤',
-                image: '/img/orchestra.jpg'
+                image: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=500&h=400&fit=crop'
             },
             2: { 
                 name: '뮤지컬 레미제라블', 
@@ -226,7 +223,7 @@
                 venue: '샤롯데씨어터', 
                 price: 120000, 
                 description: '감동의 대작 뮤지컬 레미제라블\n최고의 배우들이 선사하는 감동',
-                image: '/img/musical.jpg'
+                image: 'https://images.unsplash.com/photo-1503095396549-807759245b35?w=500&h=400&fit=crop'
             },
             3: { 
                 name: '재즈 페스티벌', 
@@ -234,7 +231,7 @@
                 venue: '올림픽공원', 
                 price: 65000, 
                 description: '유명 재즈 아티스트들의 특별한 공연\n재즈의 매력에 빠져보세요',
-                image: '/img/jazz.jpg'
+                image: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=500&h=400&fit=crop'
             },
             4: { 
                 name: '발레 백조의 호수', 
@@ -242,14 +239,13 @@
                 venue: '예술의전당', 
                 price: 95000, 
                 description: '우아하고 아름다운 발레 공연\n최고의 발레리나들이 선사하는 예술',
-                image: '/img/ballet.jpg'
+                image: 'https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=500&h=400&fit=crop'
             }
         };
 
         const concert = concerts[concertId] || concerts[1];
         
         // 페이지에 데이터 표시
-        document.getElementById('concertId').value = concertId || 1;
         document.getElementById('concertName').textContent = concert.name;
         document.getElementById('concertDate').textContent = concert.date;
         document.getElementById('concertPrice').textContent = concert.price.toLocaleString() + '원';
@@ -260,11 +256,16 @@
         const img = document.createElement('img');
         img.src = concert.image;
         img.alt = concert.name;
-        img.onerror = function() {
-            imageDiv.innerHTML = '공연 이미지';
-        };
         imageDiv.innerHTML = '';
         imageDiv.appendChild(img);
+
+        function bookConcert() {
+            const quantity = document.getElementById('quantity').value;
+            const totalPrice = concert.price * quantity;
+            
+            alert(`예매 완료!\n\n공연명: ${concert.name}\n수량: ${quantity}장\n총 금액: ${totalPrice.toLocaleString()}원\n\n* GitHub Pages 데모 버전으로 실제 예매는 저장되지 않습니다.`);
+            window.location.href = './concerts.html';
+        }
     </script>
 </body>
 </html>
