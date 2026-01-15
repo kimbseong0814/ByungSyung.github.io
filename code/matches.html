@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta charset="UTF-8">
-         <base href="/ByungSyung.github.io/">
         <title>경기 예매</title>
         <style>
             * {
@@ -188,6 +187,21 @@
                 font-weight: bold;
                 color: #333;
             }
+
+            .back-home {
+                text-align: center;
+                margin: 20px 0;
+            }
+
+            .back-home a {
+                color: #333;
+                text-decoration: none;
+                font-size: 16px;
+            }
+
+            .back-home a:hover {
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
@@ -195,10 +209,14 @@
             <h1>축구 경기 예매 사이트</h1>
         </header>
 
+        <div class="back-home">
+            <a href="../index.html">← 메인으로 돌아가기</a>
+        </div>
+
         <div class="nav">
             <div class="nav-section">
-                <button class="check-btn inactive" onclick="location.href='/login'">로그인</button>
-                <button class="check-btn inactive" onclick="location.href='/bookinglist'">예매 내역</button>
+                <button class="check-btn inactive" onclick="location.href='login.html'">로그인</button>
+                <button class="check-btn inactive" onclick="alert('로그인 후 이용 가능합니다.')">예매 내역</button>
             </div>
         </div>
 
@@ -208,19 +226,15 @@
             </div>
 
             <div class="summary-section">
-                <div class="summary-title">예매 소계</div>
+                <div class="summary-title">예매 소개</div>
                 <div class="summary-grid">
                     <div class="summary-item">
-                        <div class="summary-label">예매자 이름<br>예매자 이메일</div>
-                        <div class="summary-value" style="font-size: 16px;">-</div>
+                        <div class="summary-label">세계 최고의 클럽들</div>
+                        <div class="summary-value" style="font-size: 16px;">프리미어리그, 라리가</div>
                     </div>
                     <div class="summary-item">
-                        <div class="summary-label">예매 수량</div>
-                        <div class="summary-value">0</div>
-                    </div>
-                    <div class="summary-item">
-                        <div class="summary-label">총 예매 가격</div>
-                        <div class="summary-value">0원</div>
+                        <div class="summary-label">최고의 경기장</div>
+                        <div class="summary-value" style="font-size: 16px;">최상의 관람 환경</div>
                     </div>
                 </div>
             </div>
@@ -229,10 +243,10 @@
         <script>
             // 샘플 데이터
             const matches = [
-                { id: 1, name: '맨체스터 유나이티드 vs 리버풀', date: '2026-03-15', venue: '올드 트래포드', price: '150,000원', image: '/img/match1.jpg' },
-                { id: 2, name: 'FC 바르셀로나 vs 레알 마드리드', date: '2026-04-20', venue: '캄프 누', price: '200,000원', image: '/img/match2.jpg' },
-                { id: 3, name: '토트넘 vs 첼시', date: '2026-05-10', venue: '토트넘 홋스퍼 스타디움', price: '120,000원', image: '/img/match3.jpg' },
-                { id: 4, name: '바이에른 뮌헨 vs 도르트문트', date: '2026-06-05', venue: '알리안츠 아레나', price: '180,000원', image: '/img/match4.png' }
+                { id: 1, name: '맨체스터 유나이티드 vs 리버풀', date: '2026-03-15', venue: '올드 트래포드', price: '150,000원', image: '../img/match1.jpg' },
+                { id: 2, name: 'FC 바르셀로나 vs 레알 마드리드', date: '2026-04-20', venue: '캄프 누', price: '200,000원', image: '../img/match2.jpg' },
+                { id: 3, name: '토트넘 vs 첼시', date: '2026-05-10', venue: '토트넘 홋스퍼 스타디움', price: '120,000원', image: '../img/match3.jpg' },
+                { id: 4, name: '바이에른 뮌헨 vs 도르트문트', date: '2026-06-05', venue: '알리안츠 아레나', price: '180,000원', image: '../img/match4.png' }
             ];
 
             function renderMatches() {
@@ -261,12 +275,17 @@
                                 </div>
                             </div>
                             <div class="match-buttons">
-                                <button class="btn btn-book" onclick="location.href='/match?matchId=${match.id}'">예매 수량</button>
-                                <button class="btn btn-price">총 예매 가격</button>
+                                <button class="btn btn-book" onclick="bookMatch(${match.id}, '${match.name}')">예매하기</button>
+                                <button class="btn btn-price">${match.price}</button>
                             </div>
                         </div>
                     </div>
                 `).join('');
+            }
+
+            function bookMatch(matchId, matchName) {
+                alert('로그인 후 예매가 가능합니다.\n예매하려는 경기: ' + matchName);
+                location.href = 'login.html';
             }
 
             renderMatches();
