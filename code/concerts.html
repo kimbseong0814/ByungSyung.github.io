@@ -276,9 +276,9 @@
 
         <div class="nav">
             <div class="nav-section" id="navButtons">
-                <button class="check-btn inactive" onclick="location.href='/login'">로그인</button>
-                <button class="check-btn inactive" onclick="location.href='/concert_orderlist'">주문 내역</button>
-                <button class="check-btn inactive" onclick="location.href='/'">메인으로</button>
+                <button class="check-btn inactive" onclick="alert('GitHub Pages 데모 버전입니다.')">로그인</button>
+                <button class="check-btn inactive" onclick="location.href='./concert_orderlist.html'">주문 내역</button>
+                <button class="check-btn inactive" onclick="location.href='../index.html'">메인으로</button>
             </div>
         </div>
 
@@ -321,12 +321,12 @@
         <script>
             let currentConcert = null;
 
-            // 샘플 데이터 (실제로는 서버에서 받아옴)
+            // 샘플 데이터
             const concerts = [
-                { id: 1, name: '클래식 오케스트라', date: '2026-03-15', venue: '세종문화회관', price: 80000, image: '/img/orchestra.jpg' },
-                { id: 2, name: '뮤지컬 레미제라블', date: '2026-04-20', venue: '샤롯데씨어터', price: 120000, image: '/img/musical.jpg' },
-                { id: 3, name: '재즈 페스티벌', date: '2026-05-10', venue: '올림픽공원', price: 65000, image: '/img/jazz.jpg' },
-                { id: 4, name: '발레 백조의 호수', date: '2026-06-05', venue: '예술의전당', price: 95000, image: '/img/ballet.jpg' }
+                { id: 1, name: '클래식 오케스트라', date: '2026-03-15', venue: '세종문화회관', price: 80000, image: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=300&h=200&fit=crop' },
+                { id: 2, name: '뮤지컬 레미제라블', date: '2026-04-20', venue: '샤롯데씨어터', price: 120000, image: 'https://images.unsplash.com/photo-1503095396549-807759245b35?w=300&h=200&fit=crop' },
+                { id: 3, name: '재즈 페스티벌', date: '2026-05-10', venue: '올림픽공원', price: 65000, image: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=300&h=200&fit=crop' },
+                { id: 4, name: '발레 백조의 호수', date: '2026-06-05', venue: '예술의전당', price: 95000, image: 'https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=300&h=200&fit=crop' }
             ];
 
             function openBookingModal(concert) {
@@ -343,35 +343,20 @@
 
             function confirmBooking() {
                 const quantity = document.getElementById('quantityInput').value;
+                const totalPrice = currentConcert.price * quantity;
                 
-                // 서버로 예매 정보 전송
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = '/bookConcert';
-                
-                const concertIdInput = document.createElement('input');
-                concertIdInput.type = 'hidden';
-                concertIdInput.name = 'concertId';
-                concertIdInput.value = currentConcert.id;
-                
-                const quantityInputField = document.createElement('input');
-                quantityInputField.type = 'hidden';
-                quantityInputField.name = 'quantity';
-                quantityInputField.value = quantity;
-                
-                form.appendChild(concertIdInput);
-                form.appendChild(quantityInputField);
-                document.body.appendChild(form);
-                form.submit();
+                // 데모 버전이므로 alert만 표시
+                alert(`예매 완료!\n\n공연명: ${currentConcert.name}\n수량: ${quantity}장\n총 금액: ${totalPrice.toLocaleString()}원\n\n* GitHub Pages 데모 버전으로 실제 예매는 저장되지 않습니다.`);
+                closeModal();
             }
 
             function renderConcerts() {
                 const container = document.getElementById('concertsList');
                 container.innerHTML = concerts.map(concert => `
                     <div class="concert-card">
-                        <img src="${concert.image}" alt="${concert.name}" class="concert-image" onerror="this.src='https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=300&h=200&fit=crop'" onclick="location.href='/concert_detail?concertId=${concert.id}'" style="cursor: pointer;">
+                        <img src="${concert.image}" alt="${concert.name}" class="concert-image" onclick="location.href='./concert_detail.html?concertId=${concert.id}'" style="cursor: pointer;">
                         <div class="concert-info">
-                            <div class="concert-name" onclick="location.href='/concert_detail?concertId=${concert.id}'" style="cursor: pointer;">${concert.name}</div>
+                            <div class="concert-name" onclick="location.href='./concert_detail.html?concertId=${concert.id}'" style="cursor: pointer;">${concert.name}</div>
                             <div class="concert-details">
                                 <div class="detail-row">
                                     <span class="detail-label">공연 날짜</span>
