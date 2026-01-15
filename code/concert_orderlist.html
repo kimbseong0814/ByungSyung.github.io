@@ -109,6 +109,25 @@
             grid-column: 1 / -1;
         }
 
+        .back-btn {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-btn button {
+            padding: 12px 30px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .back-btn button:hover {
+            background-color: #555;
+        }
+
         @media (max-width: 1024px) {
             .order-row {
                 grid-template-columns: 1fr;
@@ -141,12 +160,16 @@
         </div>
 
         <div id="ordersList">
-            <!-- 서버에서 데이터가 들어올 자리 -->
+            <!-- 샘플 데이터가 들어올 자리 -->
+        </div>
+
+        <div class="back-btn">
+            <button onclick="location.href='./concerts.html'">공연 목록으로 돌아가기</button>
         </div>
     </div>
 
     <script>
-        // 샘플 데이터 (실제로는 서버에서 받아옴)
+        // 샘플 데이터 (데모용)
         const orders = [
             {
                 id: 1001,
