@@ -4,6 +4,24 @@ https://kimbseong0814.github.io/ByungSyung.github.io/
 
 ---
 
+## 설치 방법
+1. 저장소 클론
+```   
+git clone https://github.com/kimbseong0814/ByungSyung.github.io.git
+cd ByungSyung.github.io
+```
+2. Node.js 모듈 설치
+```
+npm install
+```
+또는 개별 설치:
+
+```
+hnpm install mariadb
+```
+
+---
+
 ## 축구 예매 시스템 데이터베이스 설계 
 
 ## 프로젝트 개요
@@ -174,15 +192,21 @@ DELETE FROM match_bookings WHERE id = 1;
 
 **현재 파일 구조:**
 ```
-project/
-├── index.html (main.html을 복사)
-├── matches.html
-├── concerts.html
-├── login.html
-├── signup.html
-├── img/
-│   ├── soccer.jpg
-│   ├── concert.jpg
-│   ├── match1.jpg
-│   └── ...
-└── README.md
+ByungSyung.github.io/
+├── code/                      # 서버 코드
+│   ├── index.js              # 메인 진입점
+│   ├── Server.js             # HTTP 서버
+│   ├── router.js             # 라우팅 처리
+│   ├── requestHandler.js     # 요청 핸들러
+│   ├── matches.html          # 축구 경기 페이지
+│   ├── concerts.html         # 공연 예매 페이지
+│   ├── login.html            # 로그인 페이지
+│   ├── signup.html           # 회원가입 페이지
+│   └── match_bookinglist.html # 예매 내역 페이지
+├── Database/
+│   └── connect/
+│       └── mariadb.js        # 데이터베이스 연결
+├── img/                       # 이미지 파일
+├── index.html                # 메인 페이지
+└── README.md                 # 프로젝트 설명서
+```
