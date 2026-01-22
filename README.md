@@ -4,24 +4,6 @@ https://kimbseong0814.github.io/ByungSyung.github.io/
 
 ---
 
-## 설치 방법
-1. 저장소 클론
-```   
-git clone https://github.com/kimbseong0814/ByungSyung.github.io.git
-cd ByungSyung.github.io
-```
-2. Node.js 모듈 설치
-```
-npm install
-```
-또는 개별 설치:
-
-```
-hnpm install mariadb
-```
-
----
-
 ## 축구 예매 시스템 데이터베이스 설계 
 
 ## 프로젝트 개요
